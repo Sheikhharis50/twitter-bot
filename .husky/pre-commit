@@ -1,0 +1,3 @@
+echo "************************************ Running Lint Please Wait ************************************"
+pnpm lint
+pnpm format:check 
