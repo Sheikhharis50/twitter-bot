@@ -15,3 +15,9 @@ pnpm install
 ```sh
 cp .env.example .env
 ```
+
+### Run Bot
+
+```sh
+pnpm dev
+```
