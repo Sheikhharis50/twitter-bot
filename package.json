@@ -33,6 +33,8 @@
   },
   "dependencies": {
     "agent-twitter-client": "^0.0.18",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "tough-cookie": "^5.1.0",
+    "twitter-api-sdk": "^1.2.1"
   }
 }
