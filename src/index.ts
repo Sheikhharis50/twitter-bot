@@ -1,1 +1,3 @@
-console.log('Hello world!');
+import configs from './config';
+
+console.log(configs.twitter);
