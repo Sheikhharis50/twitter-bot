@@ -1,21 +1,42 @@
-/**
- * Attempt #01
- * using elizaOS twitter agent: https://github.com/elizaOS/agent-twitter-client
- */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
-import eliza from './bots/eliza';
+import { ElizaBot } from './bots/eliza';
+import { CustomBot } from './bots/custom';
+import { configs } from './configs';
 
-eliza.run().catch((error) => {
-  console.error('Error running the bot:', error);
-});
+(() => {
+  const elizaBot = async () => {
+    const eliza = new ElizaBot();
+    await eliza.login();
 
-/**
- * Attempt #02
- * using twitter sdk: https://www.npmjs.com/package/twitter-api-sdk
- */
+    // Get logged-in user's profile
+    // const me = await eliza.scraper.me();
+    // console.log('LoggedIn user:', me);
 
-// import custom from './bots/custom';
+    // get a specific tweet
+    // const tweet = await eliza.scraper.getTweet('1880635491667865953');
+    // console.log("Specific tweet", tweet);
 
-// custom.run().catch((error) => {
-//   console.error('Error running the bot:', error);
-// });
+    // get first 10 tweets from a username
+    // console.log("Following are the elonmusk first 10 tweets: ")
+    // for await (const tweet of eliza.scraper.getTweets('elonmusk', 10)) {
+    //   console.log(tweet);
+    // }
+
+    // send tweet to a tweet
+    // await eliza.scraper.sendTweet('Hello World', '1880635491667865953');
+    // console.log('Tweet is posted');
+  };
+
+  const customBot = async () => {
+    const custom = new CustomBot();
+
+    const user = await custom.client.users.findUserByUsername(
+      configs.twitter.username
+    );
+    console.log('User:', user.data);
+  };
+
+  // elizaBot();
+  // customBot();
+})();

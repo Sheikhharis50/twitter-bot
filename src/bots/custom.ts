@@ -1,12 +1,10 @@
 import { configs } from '../configs';
 import { Client } from 'twitter-api-sdk';
 
-const run = async () => {
-  console.log('Custom Bot is running');
+export class CustomBot {
+  public readonly client: Client;
 
-  const client = new Client(configs.twitter.bearer_token);
-  const user = await client.users.findUserByUsername(configs.twitter.username);
-  console.log(user);
-};
-
-export default { run };
+  constructor() {
+    this.client = new Client(configs.twitter.bearer_token);
+  }
+}
