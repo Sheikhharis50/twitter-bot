@@ -69,6 +69,10 @@ const run = async () => {
   // login in twitter
   await login(scraper);
 
+  // Get logged-in user's profile
+  // const me = await scraper.me();
+  // console.log(me);
+
   // get a specific tweet
   // const tweet = await scraper.getTweet('1880635491667865953');
   // console.log(tweet);
