@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const configs = {
+  database_url: process.env.DATABASE_URL || '',
   twitter: {
     username: process.env.TWITTER_USERNAME || '',
     password: process.env.TWITTER_PASSWORD || '',

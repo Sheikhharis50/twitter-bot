@@ -3,6 +3,10 @@
 import { ElizaBot } from './bots/eliza';
 import { CustomBot } from './bots/custom';
 import { configs } from './configs';
+import { MediaPostRepository } from './repositories';
+import { PollingService } from './services/polling';
+import { IMediaPostTable, mediaPostSchema } from './schemas';
+import { eq } from 'drizzle-orm';
 
 (() => {
   const elizaBot = async () => {
@@ -37,6 +41,26 @@ import { configs } from './configs';
     console.log('User:', user.data);
   };
 
+  const dbTest = async () => {
+    const mediaPostRepo = new MediaPostRepository();
+    const pollingService = new PollingService<IMediaPostTable>(
+      async () => {
+        return mediaPostRepo.findBy({
+          filters: [eq(mediaPostSchema.status, 'new')],
+        });
+      },
+      async (id: string) => {
+        mediaPostRepo.update({
+          set: { status: 'posted' },
+          filters: [eq(mediaPostSchema.id, id)],
+        });
+      }
+    );
+
+    pollingService.pollDatabase();
+  };
+
   // elizaBot();
   // customBot();
+  dbTest();
 })();
